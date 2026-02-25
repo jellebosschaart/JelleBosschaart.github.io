@@ -2,39 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Data & Automation</title>
+    <title>Data Portfolio Console</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<header>
-    <h1>SYSTEM_ARCHITECT://[YOUR_NAME]</h1>
-    <nav>
-        <a href="index.html">./home</a>
-        <a href="projects.html">./projects</a>
-        <a href="mailto:you@email.com">./contact</a>
-    </nav>
+<div class="console">
+    <header style="display: flex; align-items: center; gap: 20px; justify-content: center;">
+    <img 
+    src="static/images/Vietnam Jelle zoomed.jpg" 
+    alt="Profile" 
+    class="profile-img" 
+    id="profileImg" 
+    onclick="toggleImageSize()"
+    style="cursor: pointer;"
+>
+    
+    <div style="text-align: left;">
+        <h1 style="letter-spacing: -1px; margin: 0;">Jelle Bosschaart</h1>
+        <p style="color: var(--text-dim); margin: 0;">Insights-driven automation & data science</p>
+    </div>
 </header>
 
-<main class="container">
-    <section class="terminal-window">
-        <p><span style="color: var(--dim-green)">> INITIALIZING...</span></p>
-        <p><span style="color: var(--dim-green)">> LOADING BIO...</span></p>
-        <h2>Hello, I'm a Data Scientist & Automation Expert.</h2>
-        <p>I specialize in turning messy datasets into clean insights and manual workflows into autonomous systems.</p>
-        <p>> Current_Focus: Predictive Analytics & Python Automation<span class="cursor"></span></p>
-    </section>
+    <div id="dashboardView">
+        <div class="dashboard-grid">
+            <div class="widget">
+                <h4 style="margin:0 0 15px 0">Projects over time</h4>
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div class="widget">
+                <h4 style="margin:0 0 10px 0">Skills used</h4>
+                <div id="skillCounter" class="skill-list"></div>
+            </div>
+            <div class="widget full-width">
+                <input type="text" id="projectSearch" placeholder="Filter projects...">
+                <div id="projectContainer"></div>
+            </div>
+        </div>
+    </div>
 
-    <section style="margin-top: 3rem;">
-        <h3>Core_Capabilities</h3>
-        <ul>
-            <li><strong>Data_Analytics:</strong> SQL, Python, Tableau</li>
-            <li><strong>Machine_Learning:</strong> Scikit-Learn, PyTorch</li>
-            <li><strong>Automation:</strong> Selenium, API Integrations, Cron Jobs</li>
-        </ul>
-    </section>
-</main>
+    <div id="detailView" class="hidden">
+        <button class="back-btn" onclick="closeProject()">← Back to dashboard</button>
+        <div class="widget project-detail-content">
+            <div id="projectDetailHeader"></div>
+            <hr style="border: 0; border-top: 1px solid var(--border); margin: 20px 0;">
+            <div id="projectDetailBody" class="full-text"></div>
+        </div>
+    </div>
+</div>
 
+<script src="script.js"></script>
 </body>
 </html>
