@@ -1,52 +1,99 @@
+/* style.css */
 :root {
-  --color-primary: #1b4332;
-  --color-primary-light: #2d6a4f;
-  --color-primary-dark: #081c15;
-
-  --color-background: #f9fafb;
-  --color-surface: #ffffff;
-
-  --color-text: #111827;
-  --color-text-muted: #6b7280;
-
-  --color-border: #e5e7eb;
-  
-  [data-theme="dark"] {
-  --color-background: #081c15;
-  --color-surface: #1b4332;
-  --color-text: #f9fafb;
-  --color-border: #2d6a4f;
+    /* ADJUST COLORS HERE */
+    --bg-dark: #0a0f0a;        /* Deep, near-black green */
+    --terminal-green: #00ff41; /* Classic Matrix/Terminal green */
+    --dim-green: #008f11;      /* For less important text */
+    --card-bg: #111a11;        /* Slightly lighter green for cards */
+    --border-color: #003b00;
+    --font-main: 'Courier New', Courier, monospace;
 }
-}
-
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-text);
-  font-family: Inter, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--terminal-green);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
 }
 
 nav {
-  background-color: var(--color-primary);
-  color: white;
-  padding: 15px;
+    margin-top: 1rem;
 }
 
-.card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 20px;
+nav a {
+    color: var(--terminal-green);
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 10px;
+    border: 1px solid transparent;
 }
 
-button {
-  background-color: var(--color-primary);
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
+nav a:hover {
+    border: 1px solid var(--terminal-green);
+    background: rgba(0, 255, 65, 0.1);
 }
 
-button:hover {
-  background-color: var(--color-hover);
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
+
+/* Terminal Look for Hero */
+.terminal-window {
+    background: #000;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.05);
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.2em;
+    background: var(--terminal-green);
+    vertical-align: middle;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Project Cards */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    border-color: var(--terminal-green);
+    transform: translateY(-5px);
+}
+
+.tag {
+    font-size: 0.8rem;
+    background: var(--border-color);
+    padding: 2px 8px;
+    margin-right: 5px;
+}
+
+h1, h2, h3 { color: var(--terminal-green); }
+a { color: white; }
