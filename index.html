@@ -2,26 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Data Portfolio Console</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jelle Bosschaart | Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
+<div id="overlay" onclick="toggleImageSize()"></div>
+
 <div class="console">
-    <header style="display: flex; align-items: center; gap: 20px; justify-content: center;">
-    <img 
-    src="static/images/profile.jpg" 
-    alt="Profile" 
-    class="profile-img" 
-    id="profileImg" 
-    onclick="toggleImageSize()"
-    style="cursor: pointer;"
->
-    
-    <div style="text-align: left;">
-        <h1 style="letter-spacing: -1px; margin: 0;">Jelle Bosschaart</h1>
-        <p style="color: var(--text-dim); margin: 0;">Insights-driven automation & data science</p>
+    <header>
+    <div class="header-content">
+        <img 
+            src="static/images/profile.jpg" 
+            alt="Profile" 
+            class="profile-img" 
+            id="profileImg" 
+            onclick="toggleImageSize()"
+        >
+        <div class="header-text">
+            <h1>Jelle Bosschaart</h1>
+            <p>Insights-driven automation & data science</p>
+        </div>
     </div>
 </header>
 
@@ -29,12 +32,16 @@
         <div class="dashboard-grid">
             <div class="widget">
                 <h4 style="margin:0 0 15px 0">Projects over time</h4>
-                <canvas id="lineChart"></canvas>
+                <div class="chart-container">
+                    <canvas id="lineChart"></canvas>
+                </div>
             </div>
+            
             <div class="widget">
                 <h4 style="margin:0 0 10px 0">Skills used</h4>
                 <div id="skillCounter" class="skill-list"></div>
             </div>
+            
             <div class="widget full-width">
                 <input type="text" id="projectSearch" placeholder="Filter projects...">
                 <div id="projectContainer"></div>
