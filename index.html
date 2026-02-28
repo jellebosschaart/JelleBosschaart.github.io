@@ -29,12 +29,13 @@
     </div>
 
     <div class="header-actions">
-        <button class="nav-btn" onclick="showView('storyView')"style="font-size: 1rem;"><i class="fa-solid fa-book"></i> Story behind the data</button>
+        <button class="nav-btn" onclick="showView('storyView')"style="font-size: 1rem; min-height: 40px;">
+            <i class="fa-solid fa-book" style="font-size: 1rem"></i> Story behind the data
+        </button>
         <button class="nav-btn email-btn" id="copyEmailBtn" onclick="copyEmail()">
-        <i class="fas fa-envelope"></i> 
-        <span id="emailBtnText">Copy Email</span>
-    </button>
-    </a>
+            <i class="fas fa-envelope"></i> 
+            <span id="emailBtnText">Copy Email</span>
+        </button>  
     </div>
     </header>   
 
@@ -48,20 +49,27 @@
 
     <div id="dashboardView">
         <div class="dashboard-grid">
+            
             <div class="widget">
                 <h4 style="margin:0 0 15px 0">Projects over time</h4>
-                <div class="chart-container">
-                    <canvas id="lineChart"></canvas>
-                </div>
+                <div class="chart-container"><canvas id="lineChart"></canvas></div>
             </div>
             
             <div class="widget">
                 <h4 style="margin:0 0 10px 0">Skills used</h4>
                 <div id="skillCounter" class="skill-list"></div>
             </div>
-            
+
+            <div id="filterStatus" class="hidden" style="grid-column: 1 / -1;">
+                <button id="clearFiltersBtn" class="clear-filters-standalone" onclick="clearFilters()">
+                    <i class="fas fa-times-circle"></i> Active Filters Applied — Click to Reset Dashboard
+                </button>
+            </div>
+
             <div class="widget full-width">
-                <input type="text" id="projectSearch" placeholder="Filter projects...">
+                <div class="search-container">
+                    <input type="text" id="projectSearch" placeholder="Filter projects...">
+                </div>
                 <div id="projectContainer"></div>
             </div>
         </div>

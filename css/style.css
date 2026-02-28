@@ -1,4 +1,42 @@
-/* style.css - Bulletproof Responsive Dashboard */
+/* Styling the standalone bar */
+.clear-filters-standalone {
+    width: 100%;
+    background: #fef2f2; /* Ultra-light red */
+    border: 1px dashed #f87171; /* Dashed border looks "temporary" */
+    color: #b91c1c;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.clear-filters-standalone:hover {
+    background: #fee2e2;
+    border-style: solid;
+    transform: translateY(-1px);
+}
+
+/* Ensure the grid respects the new row */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+/* Make sure the filter status stays hidden correctly */
+#filterStatus.hidden {
+    display: none !important;
+}
+
+
+
 * {
     box-sizing: border-box;
 }
@@ -13,13 +51,14 @@
     --border: #1b2e25;
     --max-width: 1100px;
 
-    --bg: #f8fafc;           /* Light grey-blue background */
+    --bg: #d3d3d4;           /* Light grey-blue background */
     --panel: #ffffff;        /* Pure white widgets */
     --accent: #00ae20;       /* #10b981 Brighter, trustworthy emerald */
     --accent-glow: rgba(16, 185, 129, 0.1);
     --text: #1e293b;         /* Deep slate for readability */
     --text-dim: #64748b;     /* Muted slate for captions */
     --border: #e2e8f0;       /* Soft border (much cleaner than dark green) */
+    --bttn: #ffffff;
     --max-width: 1100px;
 }
 
@@ -57,6 +96,14 @@ body {
 .nav-btn {
     min-width: 150px;
     justify-content: center;
+    background: var(--bttn);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: 0.3s;
 }
 
 .nav-btn i {
@@ -64,9 +111,34 @@ body {
     color: var(--accent);
 }
 
+.nav-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
 /* Hover state to match the other button */
 .nav-btn:hover i {
     color: var(--text);
+}
+
+
+/* Highlights the clicked skill */
+.skill-item.active-filter {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-glow);
+    color: var(--accent);
+    padding-left: 8px; /* Slight indent for visual feedback */
+}
+
+/* Make skills clickable */
+.skill-item {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.skill-item:hover {
+    background: var(--accent-glow);
 }
 
 /* Feedback state for the button */
@@ -143,22 +215,7 @@ header {
     color: var(--text-dim);
 }
 
-.nav-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: 0.3s;
-}
 
-.nav-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--accent-glow);
-}
 
 /* Dashboard Grid */
 .dashboard-grid {
