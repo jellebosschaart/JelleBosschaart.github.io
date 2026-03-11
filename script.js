@@ -2,11 +2,10 @@ const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRPyPDyOq
 
 let projectData = [];
 
-// --- NEW: FILTER STATE ---
 let activeYearFilter = null;
 let activeSkillFilter = null;
 
-
+// Function to copy email to clipboard
 function copyEmail() {
     const email = "jnbosschaart@gmail.com";
     const btn = document.getElementById('copyEmailBtn');
@@ -24,6 +23,7 @@ function copyEmail() {
     });
 }
 
+// Function GETS sheet data
 async function init() {
     try {
         console.log("Attempting to fetch data via Proxy...");
@@ -44,6 +44,8 @@ async function init() {
     }
 }
 
+
+// Function parses CSV into a result constant, with specific variables per result.
 function parseCSV(csvText) {
     const lines = csvText.split(/\r?\n/);
     const result = [];
@@ -105,6 +107,7 @@ function toggleClearButton() {
         }
     }
 }
+
 function renderAll() {
     renderSkills();
     renderChart();
@@ -116,7 +119,6 @@ function renderAll() {
 
 
 // --- RENDERERS ---
-
 function toggleSkillFilter(skillName) {
     activeSkillFilter = (activeSkillFilter === skillName) ? null : skillName;
     applyAllFilters();
