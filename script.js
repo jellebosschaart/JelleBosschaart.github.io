@@ -271,6 +271,7 @@ function closeProject() {
 
 function showView(viewId) {
     const views = ['dashboardView', 'detailView', 'storyView', 'contactView'];
+
     views.forEach(id => {
         const el = document.getElementById(id);
         if (el) {
@@ -278,7 +279,15 @@ function showView(viewId) {
             else el.classList.add('hidden');
         }
     });
-    if (viewId === 'dashboardView') window.history.pushState({}, '', window.location.pathname);
+
+    // Load external story content when needed
+    if (viewId === 'storyView') {
+        loadStory();
+    }
+
+    if (viewId === 'dashboardView') {
+        window.history.pushState({}, '', window.location.pathname);
+    }
 }
 
 function toggleImageSize() {
@@ -294,3 +303,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Use the applyAllFilters engine instead of just re-rendering projects
     document.getElementById('projectSearch')?.addEventListener('input', () => applyAllFilters());
 });
+
+function loadStory() {
+    fetch('story.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to load story');
+            return response.text();
+        })
+        .then(html => {
+            document.getElementById('storyContent').innerHTML = html;
+        })
+        .catch(err => {
+            console.error(err);
+            document.getElementById('storyContent').innerHTML = 'Error loading story.';
+        });
+}
